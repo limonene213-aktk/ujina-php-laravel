@@ -5,9 +5,9 @@
     <body>
         <!--<h1>Hello</h1>-->
         <!--<p>This is a simple page with php-template.</p>-->
-        <h1>@PHPディレクティブの説明ページ</h1>
+        <h1>@@PHPディレクティブの説明ページ</h1>
 
-        <p>@PHPディレクティブで書いてみます（style未適用／処理）</p>
+        <p>@@PHPディレクティブで書いてみます（style未適用／処理）</p>
 
         @php
             $arr = ['message'=>'メッセージ', 'view_message'=>'ビューメッセージ'];
