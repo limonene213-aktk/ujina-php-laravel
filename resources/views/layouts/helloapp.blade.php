@@ -12,17 +12,17 @@
             }
             h1 {
                 font-size:34px;
-                text-align:right;
                 color:#c1c9f5;
                 margin:0 0 14px;
                 letter-spacing: 2px;
                 text-shadow: 0 2px 10px rgba(140, 155, 245, 0.2);
             }
+            .main-title{ text-align:center; }
             ul{
                 font-size:13px;
                 list-style: none;
                 padding: 12px 18px;
-                margin: 0 0 12px auto;
+                margin: 0 auto 12px;
                 background: #fff;
                 border-radius: 12px;
                 box-shadow: 0 10px 24px rgba(30, 40, 90, 0.08);
@@ -54,7 +54,7 @@
 
     <body>
         <!--こちらが親ファイル（カラーボックス本体）で、yeildで穴をあけておく-->
-        <h1>@yield('title')</h>
+        <h1 class='main-title'>@yield('title')</h1>
         @section('menubar')<!--デフォルトの値付きの穴（子が別のものを出してきたときの条件分け）-->
         
         <ul>
