@@ -2,15 +2,53 @@
     <head>
         <title>@yield('title')</title>
         <style>
-            body {font-size: 16pt; color:#555; background:#f7f8fb; font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", Arial, sans-serif;}
-            h1 {font-size:40pt; text-align:right; color:#cfd6f6; margin:-20px 0px 0px 0px; letter-spacing: 2px;}
-            ul{font-size:12pt; list-style: none; padding: 10px 16px; margin: 0; background: #fff; border-radius: 10px; box-shadow: 0 6px 14px rgba(30, 40, 90, 0.08);}            
-            li{padding-left: 1.2em; position: relative;}
+            body {
+                font-size: 16px;
+                color:#3f4655;
+                background: linear-gradient(180deg, #f7f8fb 0%, #f2f4fb 100%);
+                font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", Arial, sans-serif;
+                margin:0;
+                padding:32px 24px 48px;
+            }
+            h1 {
+                font-size:34px;
+                text-align:right;
+                color:#c1c9f5;
+                margin:0 0 14px;
+                letter-spacing: 2px;
+                text-shadow: 0 2px 10px rgba(140, 155, 245, 0.2);
+            }
+            ul{
+                font-size:13px;
+                list-style: none;
+                padding: 12px 18px;
+                margin: 0 0 12px auto;
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 10px 24px rgba(30, 40, 90, 0.08);
+                max-width: 960px;
+            }
+            li{padding-left: 1.2em; position: relative; color:#5a6072;}
             li:before{content:"•"; position:absolute; left:0; color:#7a8cf3;}
-            hr{margin:25pt 100px; border:0; border-top:1px dashed #d9def0;}
-            .menutitle{font-size: 14px; font-weight:bold; margin:0px; color:#6f7ad9;}
-            .content{margin:16px; background:#fff; padding: 16px 18px; border-radius: 12px; box-shadow: 0 8px 18px rgba(30, 40, 90, 0.08);}
-            .footer{text-align:right; font-size:10pt; margin:12px 10px; border-bottom:solid 1px #e3e6f2; color:#b3b7c7;}
+            hr{margin:22px auto; border:0; border-top:1px dashed #d9def0; max-width: 960px;}
+            .menutitle{font-size: 13px; font-weight:bold; margin:0 0 6px; color:#6f7ad9;}
+            .content{
+                margin:16px auto;
+                background:#fff;
+                padding: 22px 24px;
+                border-radius: 14px;
+                box-shadow: 0 12px 26px rgba(30, 40, 90, 0.08);
+                max-width: 960px;
+            }
+            .content p{margin: 8px 0; line-height: 1.7; color:#4a5163;}
+            .footer{
+                text-align:right;
+                font-size:11px;
+                margin:14px auto 0;
+                border-bottom:solid 1px #e3e6f2;
+                color:#9aa0b2;
+                max-width: 960px;
+            }
         </style>
     </head>
 
