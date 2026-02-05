@@ -1,7 +1,7 @@
 <?php
 // PHP単体実行でデータを取得して表示する例です
 
-$id = 90;
+$id = 88;
 $url = "https://jsonplaceholder.typicode.com/posts/{$id}";
 
 $json = file_get_contents($url);
