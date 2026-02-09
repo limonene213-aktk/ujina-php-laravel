@@ -19,8 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', [HelloController::class, 'index']);
-
 /* helloにアクセスすると、クロージャが発火してhello.indexを返す */
 /* 直接viewメソッドをreturnしていただけ */
 /*
