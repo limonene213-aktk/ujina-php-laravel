@@ -13,6 +13,15 @@ class Message extends Component
     private $data;
     private $msg;
 
+    /*
+    public function __construct($id = null)
+    {
+        $this->id = $id ?? rand(1, 100);  // idがなければ1〜100のランダム
+        // ...
+    }
+
+    のように、デフォルト値を入れてもOK
+    */
     public function __construct($id = 1)
     {
         $this->msg = 'ランダムなPOSTデータを表示します。';
