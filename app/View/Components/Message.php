@@ -17,10 +17,10 @@ class Message extends Component
     private $data; //外部APIから取得したデータを格納するプロパティを定義しておく
     private $msg;
 
-    public function __construct()
+    public function __construct($id = 1) // ← $idを引数として受け取る（デフォルト値は1）
     {
         $this->msg = 'ランダムなPOSTデータを表示するよ';//追加
-        $this->id = $id;//追加
+        $this->id = $id ?? 1; // nullの場合は1を使用
 
         $response = Http::get('https://jsonplaceholder.typicode.com/posts/'. $this->id) ;//外部APIにアクセス
         //Http::get()はLaravelのHTTPクライアント機能を使って外部APIにGETリクエストを送るメソッドで、使い方は以下の通り
