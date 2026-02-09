@@ -13,12 +13,16 @@ class Message extends Component
      * Create a new component instance.
      */
 
+    private $id;//追加
     private $data; //外部APIから取得したデータを格納するプロパティを定義しておく
+    private $msg;
 
     public function __construct()
     {
-        $num = rand(1, 100); //1から100までのランダムな数字を生成
-        $response = Http::get('https://jsonplaceholder.typicode.com/posts/'.$num) ;//外部APIにアクセス
+        $this->msg = 'ランダムなPOSTデータを表示するよ';//追加
+        $this->id = $id;//追加
+
+        $response = Http::get('https://jsonplaceholder.typicode.com/posts/'. $this->id) ;//外部APIにアクセス
         //Http::get()はLaravelのHTTPクライアント機能を使って外部APIにGETリクエストを送るメソッドで、使い方は以下の通り
         //Http::get('URL')の形で使用し、指定したURLにGETリクエストを送信します。"."で繋いで変数も使えます。
         //use Illuminate\Support\Facades\Http;を宣言しておく必要がある。
@@ -32,11 +36,12 @@ class Message extends Component
     public function render(): View|Closure|string
     {
         //return view('components.message'); //componentsの中のmessage.blade.phpを参照して返すだけの処理
+        //書き換え：外部からコンポーネントに値を渡す
 
-    $data = [
-        'msg' => 'ランダムなPOSTデータを表示します。',
-        'data' => $this->data,
-    ];
-    return view('components.message', $data); //dataをビューに渡す
+        return view('components.message', [
+            'id' => $this->id,
+            'data'=> $this->data,
+            'msg' => $this->msg
+        ]);
     }
 }

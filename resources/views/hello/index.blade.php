@@ -11,7 +11,7 @@
 
 @section('content')
     <h2>コンポーネント</h2>
-    <x-message />
+    <x-message id={{$id}} />
     <p>※上がコンポーネントの表示です。</p>
 @endsection
 
