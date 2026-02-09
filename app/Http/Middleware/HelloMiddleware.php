@@ -1,5 +1,7 @@
 <?php
 
+// sail artisan make:middleware HelloMiddlewareで作成した
+
 namespace App\Http\Middleware;
 
 use Closure;
