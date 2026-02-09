@@ -10,9 +10,19 @@
 @endsection
 
 @section('content')
-    <h2>コンポーネント</h2>
-    <x-message :id="$id ?? 1" />
-    <p>※上がコンポーネントの表示です。</p>
+<p>ここが本文のコンテンツです</p>
+<table>
+    @foreach($data as $item)
+    <tr>
+        <th style="border: solid 1px #aaa; padding:5px 10px;">
+            {{$item['name']}}
+        </th>
+        <th style="border: solid 1px #aaa; padding:5px 10px;">
+            {{$item['mail']}}
+        </th>
+    </tr>
+    @endforeach
+</table>
 @endsection
 
 @section('footer')
