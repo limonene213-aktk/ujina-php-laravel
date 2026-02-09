@@ -27,7 +27,7 @@ class HelloMiddleware
 
             //mergeメソッドは、フォーム送信などで送られる値に新しい値を追加して合成（merge）するものです。
             //これにより、dataという項目で$dataの内容が追加されます。
-            //コントローラーガワでは、$request->dataでこの値を取り出すことができるようになります。
+            //コントローラーの側では、$request->dataでこの値を取り出すことができるようになります。
             $response->merge(['data'=>$data]);
 
             return $nest($request);
