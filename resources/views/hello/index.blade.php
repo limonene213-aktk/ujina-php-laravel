@@ -6,7 +6,7 @@
 
 @section('menubar')
     @parent
-    まいたけまいたけページ    
+    まいたけまいたけページ
 @endsection
 
 @section('content')
