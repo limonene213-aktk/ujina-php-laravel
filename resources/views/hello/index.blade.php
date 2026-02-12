@@ -11,18 +11,10 @@
 
 @section('content')
 <p>ここが本文のコンテンツです</p>
-<table>
-    @foreach($data as $item)
-    <tr>
-        <th style="border: solid 1px #aaa; padding:5px 10px;">
-            {{$item['name']}}
-        </th>
-        <th style="border: solid 1px #aaa; padding:5px 10px;">
-            {{$item['mail']}}
-        </th>
-    </tr>
-    @endforeach
-</table>
+
+<p>これは、<middleware>google.com</middleware>へのリンクです。</p>
+<p>これは、<middleware>hiroshima-aktk.com</middleware>へのリンクです。</p>
+
 @endsection
 
 @section('footer')
