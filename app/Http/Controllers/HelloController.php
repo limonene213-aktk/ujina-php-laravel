@@ -11,11 +11,12 @@ class HelloController extends Controller{
     {
 //        $id = $request->id; //リクエストのidの値を取り出して
 //        return view ('hello.index', ['id'=>$id]); //取り出した値をコンポーネントに渡す
-    return view('hello.index',['data'=>$request->data]);
+    //return view('hello.index',['data'=>$request->data]);
+    return view('hello.index');
     }
 
     public function post(Request $request)
     {
-        return view('hello.index');
+        return view('hello.index',['msg'=>$request->msg]);
     }
 }

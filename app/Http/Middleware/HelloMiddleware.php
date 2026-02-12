@@ -31,25 +31,11 @@ class HelloMiddleware
 
         $response = $next($request);
 
-        $content = method_exists($response, 'getContent') ? $response->getContent() : null;
-        if (!is_string($content) || $content === '') {
-            return $response;
-        }
+        $content = $response->content();
 
-        $pattern = '/<middleware>(.*?)<\/middleware>/is';
-        $content = preg_replace_callback($pattern, function ($matches) {
-            $raw = trim($matches[1] ?? '');
-            if ($raw === '') {
-                return '';
-            }
-
-            $href = preg_match('/^https?:\/\//i', $raw) ? $raw : 'https://' . $raw;
-
-            $escapedText = htmlspecialchars($raw, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-            $escapedHref = htmlspecialchars($href, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-
-            return '<a href="' . $escapedHref . '">' . $escapedText . '</a>';
-        }, $content);
+        $pattern = '/<middleware>(.*)<\/middleware>/i';
+        $replace = '<a href = "http://$1">$1</a>';
+        $content = preg_replace($pattern, $replace ,$content);
 
         $response->setContent($content);
 
