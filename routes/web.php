@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController; //追記
 use App\Http\Middleware\HelloMiddleware; //ミドルウェアのために追記
 
+use App\Http\Middleware\UjinaMiddleware; //ミドルウェアを追加したので追記
+
+
 use App\Http\Controllers\UjinaController; //みんなは無視してください
 
 /*
@@ -12,7 +15,8 @@ Route:get(....)->middleware(...)->middleware(...);のようにチェーンして
 */
 
 Route::get('hello', [HelloController::class, 'index'])
-    ->middleware(HelloMiddleware::class);
+    //->middleware(HelloMiddleware::class);
+    ->middleware(UjinaMiddleware::class);
 
 
 Route::get('/', function () {
