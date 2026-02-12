@@ -15,8 +15,8 @@ Route:get(....)->middleware(...)->middleware(...);のようにチェーンして
 */
 
 Route::get('hello', [HelloController::class, 'index'])
-    //->middleware(HelloMiddleware::class);
-    ->middleware(UjinaMiddleware::class);
+    ->middleware(HelloMiddleware::class);
+    //->middleware(UjinaMiddleware::class);
 
 
 Route::get('/', function () {
