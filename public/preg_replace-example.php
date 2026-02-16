@@ -16,8 +16,10 @@ echo $csrf_token."\n";
 $email_sample = 'joe@example.com';
 
 $filtered_mail=filter_var($email_sample, FILTER_VALIDATE_EMAIL);
-$filterd_email_bool=isset($filtered_mail);
+var_dump($filtered_mail);
 
-if($filterd_email_bool === true){
-    echo"これはメールアドレスやで";
+if($filtered_mail === false){
+    echo"ぐえええええwwwwwwwwwwwwwww";
+}else{
+    echo"なんや、emailかいな";
 }
