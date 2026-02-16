@@ -12,11 +12,20 @@ class HelloController extends Controller{
 //        $id = $request->id; //リクエストのidの値を取り出して
 //        return view ('hello.index', ['id'=>$id]); //取り出した値をコンポーネントに渡す
     //return view('hello.index',['data'=>$request->data]);
-    return view('hello.index');
+    return view('hello.index', 
+    ['msg'=>'フォームを入力してね：']);
     }
 
     public function post(Request $request)
     {
-        return view('hello.index',['msg'=>$request->msg]);
+        $validate_rule = [
+            'name' => 'required',
+            'mail'=> 'email',
+            'age' => 'numeric | between:0,150', //numericは「数字である」、betweenは「～と・・・の間」
+        ];
+
+        $request->validate($validate_rule);
+
+        return view('hello.index',['msg'=>'正しく入力できました！！']);
     }
 }

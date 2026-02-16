@@ -14,9 +14,10 @@ use App\Http\Controllers\UjinaController; //みんなは無視してください
 Route:get(....)->middleware(...)->middleware(...);のようにチェーンして書けます。
 */
 
-Route::get('hello', [HelloController::class, 'index'])
-    ->middleware(HelloMiddleware::class);
+Route::get('hello', [HelloController::class, 'index']);
+    //->middleware(HelloMiddleware::class);
     //->middleware(UjinaMiddleware::class);
+Route::post('hello', [HelloController::class, 'post']);
 
 
 Route::get('/', function () {
