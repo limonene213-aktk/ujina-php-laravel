@@ -12,34 +12,39 @@
 @section('content')
 <p>{{$msg}}</p>
 
-@if (count($errors) > 0)
-<div>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
 <form action="/hello" method="post">
     @csrf
     <div>
         <labey style="display:inline-block; width:75px;"
         for="name">name:</label>
         <input type="text" name = "name" vale = "{{old('name')}}">
+        @if ($errors->has('name'))
+        <p style="font-size:10px; margin-top:0px;">
+            ERROR:{{$errors->first('name')}}
+        </p>
+        @endif
     </div>
 
     <div>
         <labey style="display:inline-block; width:75px;"
         for="name">mail:</label>
         <input type="text" name = "mail" value = "{{old('mail')}}">
+        @if ($errors->has('mail'))
+        <p style="font-size:10px; margin-top:0px;">
+            ERROR:{{$errors->first('mail')}}
+        </p>
+        @endif
     </div>
 
     <div>
         <labey style="display:inline-block; width:75px;"
         for="name">age:</label>
         <input type="text" name = "age" value = "{{old('age')}}">
+        @if ($errors->has('age'))
+        <p style="font-size:10px; margin-top:0px;">
+            ERROR:{{$errors->first('age')}}
+        </p>
+        @endif
         <input type="submit" value="send">
     </div>
 </form>

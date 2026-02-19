@@ -13,8 +13,9 @@ $csrf_token = bin2hex($toke_byte);
 echo $csrf_token."\n";
 
 // バリデーション
-$email_sample = 'joe@example.com';
+$email_sample = 'joe@example.com'; //フォームから取ってきた値
 
+//filter_varは戻り値が非対称です！！！
 $filtered_mail=filter_var($email_sample, FILTER_VALIDATE_EMAIL);
 var_dump($filtered_mail);
 
