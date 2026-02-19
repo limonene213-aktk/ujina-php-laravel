@@ -19,9 +19,9 @@ class HelloController extends Controller{
     public function post(Request $request)
     {
         $validate_rule = [
-            'name' => 'required',
+            'name' => 'alpha:ascii', //alpha:asciiでASCII英字のみ許可（alphaだけだとUnicode＝日本語もOKになる）
             'mail'=> 'email',
-            'age' => 'numeric | between:0,150', //numericは「数字である」、betweenは「～と・・・の間」
+            'age' => 'numeric|between:0,150', //numericは「数字である」、betweenは「～と・・・の間」（パイプ前後のスペースは不要）
         ];
 
         $request->validate($validate_rule);
