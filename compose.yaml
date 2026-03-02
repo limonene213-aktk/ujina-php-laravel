@@ -93,6 +93,14 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
+    adminer:
+        image: 'adminer:latest'
+        ports:
+            - '${FORWARD_ADMINER_PORT:-8080}:8080'
+        networks:
+            - sail
+        depends_on:
+            - mysql
     selenium:
         image: selenium/standalone-chromium
         extra_hosts:
