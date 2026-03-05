@@ -56,60 +56,133 @@ use Illuminate\Database\Seeder;
 use App\Models\Person;
 
 class PersonSeeder extends Seeder
-{
-    public function run(): void
-    {
-        // まずマリン船長（宝鐘マリン）を1件固定で入れる
-        Person::create([
-            'name' => '宝鐘マリン',
-            'mail' => 'marine.houshou@example.com',
-            'age'  => 17, // ※年齢は設定値。DB用の数字として置いてるだけにゃ
-        ]);
+# Laravel Seeder 入門（初心者向け）
 
-        // 残り9件はダミー生成
-        Person::factory()->count(9)->create();
+このドキュメントは、`people` テーブルにテストデータを入れるまでを、最短手順でまとめたものです。
+
+## Seeder / Factory って何？
+- **Factory**: ダミーデータの「設計図」（どんな値を作るか）
+- **Seeder**: 実際に DB にデータを投入する処理
+
+## 1) Factory を作る
+
+```bash
+sail artisan make:factory PersonFactory --model=Person
+```
+
+`database/factories/PersonFactory.php` を次のようにします。
+
+```php
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PersonFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->name(),
+            'mail' => fake()->unique()->safeEmail(),
+            'age'  => fake()->numberBetween(16, 60),
+        ];
     }
 }
 ```
 
+## 2) Seeder を作る
 
-- Step3:DatabaseSeederから呼ぶ！
+```bash
+sail artisan make:seeder PersonSeeder
+```
 
-`database/seeders/DatabaseSeeder.php`：
+`database/seeders/PersonSeeder.php` の例：
 
 ```php
 <?php
 
 namespace Database\Seeders;
 
+use App\Models\Person;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class PersonSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(PersonSeeder::class);
+        //具体的なデータの投入
+        Person::create([
+            'name' => '宝鐘マリン',
+            'mail' => 'marine.houshou@example.com',
+            'age'  => 17,
+        ]);
+
+        //適当なデータの自動生成
+        Person::factory()->count(9)->create();
     }
 }
 ```
 
-- Step4:実行
+## 3) DatabaseSeeder から呼ぶ（重要）
 
-1. 既存データ消して入れ直す：
+`database/seeders/DatabaseSeeder.php` に以下を入れます。
+
+```php
+$this->call(PersonSeeder::class);
+```
+
+これを書かないと、`migrate:fresh --seed` しても `PersonSeeder` は実行されません。
+
+## 4) 実行コマンド
+
+- 全削除して作り直し + シード
 
 ```bash
 sail artisan migrate:fresh --seed
 ```
 
-2. 追加だけする：
+- 既存テーブルに追加で `PersonSeeder` だけ実行
 
 ```bash
 sail artisan db:seed --class=PersonSeeder
 ```
 
-### 注意点
-`Person::create()` を使うなら、`app/Models/Person.php` にこれが必要なことが多い：
+## 5) よくあるハマりどころ
+
+### A. `Person::factory()` が動かない
+`app/Models/Person.php` に `HasFactory` が必要です。
+
+```php
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Person extends Model
+{
+    use HasFactory;
+}
+```
+
+### B. `Unknown column 'updated_at'` エラー
+`people` テーブルに `created_at`, `updated_at` が無いのに、モデルが自動で保存しようとしている状態です。
+
+今回の構成（`people` に timestamps 無し）では、`app/Models/Person.php` にこれを追加します。
+
+```php
+public $timestamps = false;
+```
+
+### C. `Person::create()` で保存できない
+マスアサインメント設定（`$fillable`）を確認します。
 
 ```php
 protected $fillable = ['name', 'mail', 'age'];
 ```
+
+## 6) 投入確認
+
+```bash
+sail artisan tinker --execute="echo App\\Models\\Person::count();"
+```
+
+`10` と表示されれば、固定 1 件 + ダミー 9 件で成功です。
