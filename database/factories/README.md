@@ -98,13 +98,13 @@ class DatabaseSeeder extends Seeder
 1. 既存データ消して入れ直す：
 
 ```bash
-php artisan migrate:fresh --seed
+sail artisan migrate:fresh --seed
 ```
 
 2. 追加だけする：
 
 ```bash
-php artisan db:seed --class=PersonSeeder
+sail artisan db:seed --class=PersonSeeder
 ```
 
 ### 注意点

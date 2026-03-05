@@ -17,7 +17,9 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'mail' => fake()->unique()->safeEmail(),
+            'age'  => fake()->numberBetween(16, 60),
         ];
     }
 }
