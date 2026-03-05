@@ -6,6 +6,7 @@ use App\Http\Middleware\HelloMiddleware; //ミドルウェアのために追記
 
 use App\Http\Middleware\UjinaMiddleware; //ミドルウェアを追加したので追記
 
+use App\Http\Controllers\PersonController; //Eloquent ORMの説明で追加
 
 use App\Http\Controllers\UjinaController; //みんなは無視してください
 
@@ -31,6 +32,8 @@ Route::get('hello',function(){
     return view('hello.index');
 });
 */
+
+Route::get('person', [PersonController::class, 'index']);
 
 Route::post('ujina', [UjinaController::class, 'post']); //みんなは無視してください
 Route::get('ujina', [UjinaController::class, 'index']); //みんなは無視してください
