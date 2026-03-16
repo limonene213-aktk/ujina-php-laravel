@@ -34,6 +34,7 @@ Route::get('hello',function(){
 */
 
 Route::get('person', [PersonController::class, 'index']);
+Route::get('serch', [PersonController::class, 'serch']);
 
 Route::post('ujina', [UjinaController::class, 'post']); //みんなは無視してください
 Route::get('ujina', [UjinaController::class, 'index']); //みんなは無視してください
